@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>بحوثي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<style id="css">
+:root{--bg:#faf7f2;--fg:#1d1b18;--muted:#6b655c;--card:#fff;--accent:#b4532a;--onaccent:#fff;--line:#e6dfd3;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161412;--fg:#f2ede4;--muted:#a39b8e;--card:#211e1b;--accent:#e07a4f;--onaccent:#161412;--line:#33302b}}
+:root[data-theme="dark"]{--bg:#161412;--fg:#f2ede4;--muted:#a39b8e;--card:#211e1b;--accent:#e07a4f;--onaccent:#161412;--line:#33302b}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:'Tajawal',system-ui,sans-serif;line-height:1.7}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;display:flex;justify-content:space-between;align-items:center;padding:12px 20px;background:var(--bg);border-bottom:1px solid var(--line)}
+.logo{font-size:1.25rem}
+nav a{margin-inline-start:16px;color:var(--muted);text-decoration:none}
+nav a:hover{color:var(--accent)}
+main{max-width:1000px;margin:0 auto;padding:0 20px 90px}
+.hero{text-align:center;padding:64px 0 40px}
+.hero h1{font-size:clamp(2rem,7vw,3.4rem);margin:0}
+.hero p{color:var(--muted);font-size:1.15rem;margin:8px 0 24px}
+.btn{display:inline-block;background:var(--accent);color:var(--onaccent);border:0;border-radius:10px;padding:10px 22px;font:inherit;font-weight:700;text-decoration:none;cursor:pointer}
+.btn.sm{padding:6px 16px;font-size:.95rem}
+.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--line)}
+section h2{font-size:1.5rem;margin:48px 0 16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
+.card{margin:0;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.card img,.ph{width:100%;aspect-ratio:1;object-fit:cover;display:block}
+.ph{display:flex;align-items:center;justify-content:center;font-size:3rem;color:var(--accent);background:var(--line)}
+.card .b{padding:12px;display:flex;flex-direction:column;gap:8px}
+.card h3{margin:0;font-size:1.05rem}
+.pr{margin:0;color:var(--accent);font-weight:700}
+figcaption{padding:10px 12px;font-weight:500}
+.contact{text-align:center}
+.row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.panel{margin-top:24px;padding:16px;border:1px dashed var(--accent);border-radius:14px}
+.panel h2{margin-top:0}
+.f{display:block;margin-bottom:10px;color:var(--muted);font-size:.9rem}
+input[data-top],.card input[data-f]{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font:inherit}
+.up{cursor:pointer;color:var(--accent);font-size:.9rem}
+.del{background:none;border:0;color:#c0392b;cursor:pointer;font:inherit;text-align:start;padding:0}
+.add{margin-top:14px}
+.of{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0 14px}.ord input,.ord select{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font:inherit}.ord .btn{margin-top:8px}
+.bar{position:fixed;bottom:0;inset-inline:0;z-index:9;display:flex;gap:10px;justify-content:center;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="application/json" id="data">{"brand":"بحوثي","tagline":"بحوث جامعية منظّمة وجاهزة للتسليم","note":"التسليم بملف PDF أو نسخة مطبوعة، والدفع عبر بريدي موب أو عند الاستلام","whatsapp":"213000000000","instagram":"","rip":"أضف رقم حسابك البريدي","works":[{"id":"w1","title":"نموذج بحث","img":""},{"id":"w2","title":"نموذج مذكرة","img":""},{"id":"w3","title":"نموذج عرض تقديمي","img":""}],"products":[{"id":"p1","name":"بحث جامعي (10 صفحات)","price":"800","img":""},{"id":"p2","name":"بحث جامعي (20 صفحة)","price":"1500","img":""},{"id":"p3","name":"عرض تقديمي PowerPoint","price":"600","img":""}]}</script>
+<script id="app-js">
+const D=JSON.parse(document.getElementById('data').textContent);
+let S=JSON.parse(JSON.stringify(D)),edit=false,can=false;
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const uid=()=>Math.random().toString(36).slice(2,8);
+const label=it=>esc((it.name||it.title||'؟').slice(0,1));
+const pic=it=>it.img?`<img src="${esc(it.img)}" alt="${esc(it.name||it.title)}">`:`<div class="ph">${label(it)}</div>`;
+const at=(k,i)=>`data-k="${k}" data-i="${i}"`;
+function shrink(file){return new Promise(res=>{const fr=new FileReader();fr.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,640/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*k;c.height=im.height*k;c.getContext('2d').drawImage(im,0,0,c.width,c.height);res(c.toDataURL('image/jpeg',.72))};im.src=fr.result};fr.readAsDataURL(file)})}
+function wa(text){return 'https://wa.me/'+String(S.whatsapp).replace(/\D/g,'')+'?text='+encodeURIComponent(text)}
+function card(k,it,i){
+  if(edit){
+    const up=`<label class="up">📷 تغيير الصورة<input type="file" accept="image/*" hidden ${at(k,i)}></label>`;
+    const del=`<button class="del" data-act="del" ${at(k,i)}>حذف</button>`;
+    const nm=k==='works'?`<input data-f="title" ${at(k,i)} value="${esc(it.title)}" placeholder="العنوان">`:`<input data-f="name" ${at(k,i)} value="${esc(it.name)}" placeholder="اسم المنتج"><input data-f="price" ${at(k,i)} value="${esc(it.price)}" inputmode="numeric" placeholder="السعر بالدينار">`;
+    return `<div class="card">${pic(it)}<div class="b">${up}${nm}${del}</div></div>`;
+  }
+  if(k==='works')return `<figure class="card">${pic(it)}<figcaption>${esc(it.title)}</figcaption></figure>`;
+  return `<div class="card">${pic(it)}<div class="b"><h3>${esc(it.name)}</h3><p class="pr">${esc(it.price)} دج</p><button class="btn sm" data-act="order" data-i="${i}">اطلب الآن</button></div></div>`;
+}
+function sec(id,title,k){
+  const add=edit?`<button class="btn ghost add" data-act="add" data-k="${k}">＋ إضافة</button>`:'';
+  return `<section id="${id}"><h2>${title}</h2><div class="grid">${S[k].map((it,i)=>card(k,it,i)).join('')}</div>${add}</section>`;
+}
+const fld=(k,l,ph)=>`<label class="f">${l}<input data-top="${k}" value="${esc(S[k])}" placeholder="${ph||''}"></label>`;
+function orderForm(){
+  const v=(id,l,t,ph)=>`<label class="f">${l}<input id="${id}" type="${t||'text'}" placeholder="${ph||''}"></label>`;
+  const sel=(id,l,o)=>`<label class="f">${l}<select id="${id}">${o.map(x=>`<option>${esc(x)}</option>`).join('')}</select></label>`;
+  return `<section id="order" class="ord"><h2>اطلب الآن</h2><div class="of">${sel('o_p','الخدمة المطلوبة',S.products.map(p=>p.name+' — '+p.price+' دج'))}${v('o_s','موضوع البحث أو المادة')}${v('o_n','الاسم')}${v('o_l','اللقب')}${v('o_g','المجموعة')}${v('o_f','الفوج')}${v('o_t','رقم الهاتف','tel','05xxxxxxxx')}${sel('o_y','السنة الجامعية',['سنة أولى','سنة ثانية','سنة ثالثة','ماستر 1','ماستر 2','دكتوراه'])}${sel('o_d','طريقة التسليم',['ملف PDF (بريد إلكتروني / واتساب)','نسخة مطبوعة بالتوصيل'])}${sel('o_m','طريقة الدفع',['بريدي موب','الدفع عند الاستلام'])}${v('o_a','العنوان والولاية (للنسخة المطبوعة)')}</div><button class="btn" data-act="send">إرسال الطلب عبر واتساب</button></section>`;
+}
+function send(){
+  const g=id=>($('#'+id).value||'').trim();
+  if(!g('o_n')||!g('o_l')||!g('o_t')){alert('أدخل الاسم واللقب ورقم الهاتف');return}
+  const m=['طلب جديد','الخدمة: '+g('o_p'),'الموضوع: '+g('o_s'),'الاسم: '+g('o_n')+' '+g('o_l'),'المجموعة: '+g('o_g'),'الفوج: '+g('o_f'),'الهاتف: '+g('o_t'),'السنة: '+g('o_y'),'التسليم: '+g('o_d'),'العنوان: '+g('o_a'),'الدفع: '+g('o_m')].join('\n');
+  window.open(wa(m),'_blank','noopener');
+}
+function render(){
+  document.title=S.brand;
+  const panel=edit?`<section class="panel"><h2>معلومات المتجر</h2>${fld('brand','اسم المتجر')}${fld('tagline','الشعار')}${fld('whatsapp','رقم واتساب بالصيغة الدولية','213550000000')}${fld('instagram','حساب إنستغرام (اسم المستخدم)')}${fld('rip','رقم الحساب البريدي (RIP / CCP)')}${fld('note','ملاحظة الدفع والتوصيل')}</section>`:'';
+  const ig=S.instagram?`<a class="btn ghost" target="_blank" rel="noopener" href="https://instagram.com/${esc(S.instagram)}">إنستغرام</a>`:'';
+  const bar=can?(edit?`<div class="bar"><button class="btn" data-act="save">💾 حفظ ونشر</button><button class="btn ghost" data-act="cancel">إلغاء</button></div>`:`<div class="bar"><button class="btn" data-act="edit">✏️ تعديل الموقع</button></div>`):'';
+  $('#root').innerHTML=`<header class="top"><b class="logo">${esc(S.brand)}</b><nav><a href="#works">نماذج</a><a href="#shop">الخدمات</a><a href="#order">اطلب</a></nav></header>
+<main><section class="hero"><h1>${esc(S.brand)}</h1><p>${esc(S.tagline)}</p><a class="btn" href="#order">اطلب بحثك</a></section>${panel}${sec('works','نماذج من أعمالي','works')}${sec('shop','الخدمات والأسعار','products')}${orderForm()}
+<section id="contact" class="contact"><h2>تواصل معنا</h2><p>${esc(S.note)}</p><p>بريدي موب: ${esc(S.rip)}</p><div class="row"><a class="btn" target="_blank" rel="noopener" href="${wa('السلام عليكم')}">واتساب</a>${ig}</div></section></main>${bar}`;
+}
+function build(){
+  const css=document.getElementById('css').textContent,js=document.getElementById('app-js').textContent,end='</'+'script>';
+  const data=JSON.stringify(S).replace(/</g,'\\u003c');
+  return '<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>'+esc(S.brand)+'</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet"><style id="css">'+css+'</style></head><body><div id="root"></div><script type="application/json" id="data">'+data+end+'<script id="app-js">'+js+end+'</body></html>';
+}
+async function save(){
+  try{const a=await window.claude.use('artifact');if(!a)throw new Error('الحفظ غير متاح هنا');await a.publish(build())}
+  catch(e){alert('تعذّر الحفظ: '+(e.message||e.code||''))}
+}
+document.addEventListener('input',e=>{const t=e.target,d=t.dataset;if(d.top)S[d.top]=t.value;else if(d.f)S[d.k][+d.i][d.f]=t.value});
+document.addEventListener('change',async e=>{const t=e.target;if(t.type==='file'&&t.files[0]){S[t.dataset.k][+t.dataset.i].img=await shrink(t.files[0]);render()}});
+document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-act]');if(!b)return;const a=b.dataset.act,k=b.dataset.k;
+  if(a==='edit'){edit=true;render()}
+  else if(a==='cancel'){S=JSON.parse(JSON.stringify(D));edit=false;render()}
+  else if(a==='add'){S[k].push(k==='works'?{id:uid(),title:'عمل جديد',img:''}:{id:uid(),name:'منتج جديد',price:'0',img:''});render()}
+  else if(a==='del'){S[k].splice(+b.dataset.i,1);render()}
+  else if(a==='save')save();
+  else if(a==='send')send();
+  else if(a==='order'){const s=$('#o_p');if(s)s.selectedIndex=+b.dataset.i;$('#order').scrollIntoView()}
+});
+render();
+(async()=>{try{const u=await (window.claude&&window.claude.use('user'));can=!!(u&&u.canEdit());if(can)render()}catch(e){}})();
+</script>
+</body>
+</html>
